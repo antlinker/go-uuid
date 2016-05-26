@@ -12,17 +12,17 @@ import (
 )
 
 // seeded indicates if math/rand has been seeded
-var seeded bool = false
+var seeded = false
 
 // uuidRegex matches the UUID string
-var uuidRegex *regexp.Regexp = regexp.MustCompile(`^\{?([a-fA-F0-9]{8})-?([a-fA-F0-9]{4})-?([a-fA-F0-9]{4})-?([a-fA-F0-9]{4})-?([a-fA-F0-9]{12})\}?$`)
+var uuidRegex = regexp.MustCompile(`^\{?([a-fA-F0-9]{8})-?([a-fA-F0-9]{4})-?([a-fA-F0-9]{4})-?([a-fA-F0-9]{4})-?([a-fA-F0-9]{12})\}?$`)
 
 // UUID type.
 type UUID [16]byte
 
 // Hex returns a hex string representation of the UUID in xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx format.
-func (this UUID) Hex() string {
-	x := [16]byte(this)
+func (u UUID) Hex() string {
+	x := [16]byte(u)
 	return fmt.Sprintf("%02x%02x%02x%02x-%02x%02x-%02x%02x-%02x%02x-%02x%02x%02x%02x%02x%02x",
 		x[0], x[1], x[2], x[3], x[4],
 		x[5], x[6],
